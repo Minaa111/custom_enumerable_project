@@ -48,6 +48,30 @@ module Enumerable
     end
     counter
   end
+
+  def my_map
+    result = []
+    for element in self
+      result << yield(element)
+    end
+    result
+  end
+
+  def my_inject(initial_value = nil)
+    if initial_value
+      accumulator = initial_value
+      starting_index = 0
+    else
+      accumulator = self[0]
+      starting_index = 1
+    end
+
+    for element in self[starting_index..-1]
+      accumulator = yield(accumulator, element)
+    end
+
+    accumulator
+  end
 end
 
 # You will first have to define my_each

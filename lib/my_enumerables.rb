@@ -5,9 +5,15 @@ module Enumerable
     for element in self
       yield(element, index)
       index += 1
+    end 
+  end
+
+  def my_select
+    result = []
+    for element in self
+      result << element if yield(element)
     end
-    self
-    
+    result
   end
 end
 
